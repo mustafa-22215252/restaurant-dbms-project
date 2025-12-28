@@ -1,0 +1,48 @@
+INSERT INTO Customer(customer_id, name, phone, email)
+VALUES
+(01, 'Sarah Amed', '896-098-001' , 'sarah@gmail.com'),
+(02, 'Osama Ali', '011-048-231' , 'omer@gmail.com'),
+(03, 'Khalid Ibrahim', '101-567-946' , 'khalid@gmail.com'),
+(04, 'Malak Samer', '889-875-123' , 'malak@gmail.com'),
+(05, 'Omer Mohammed', '544-883-709' , 'omer@gmail.com');
+
+INSERT INTO employee(employee_id, name, role, salary)
+VALUES
+(01, 'Ahmed Khalifa', 'Waiter', 1250),
+(02, 'Karim Rashed', 'Cashiers', 1500),
+(03, 'Mona Ahmed', 'Chef', 2000),
+(04, 'Salma Salman', 'Chef', 2000),
+(05, 'Shareef Abdallah', 'Dish washer', 1000),
+(06, 'Waleed Smani', 'Waiter', 1250);
+
+INSERT INTO Category (category_id, category_name)
+VALUES
+  (1, 'Food'),
+  (2, 'Drinks'),
+  (3, 'Desserts'),
+  (4, 'Appetizers');
+
+INSERT INTO Menu (menu_id, name, price, category_id)
+VALUES
+  (1, 'Cheeseburger', 8.50, 1),
+  (2, 'Pizza Margherita', 10.00, 1),
+  (3, 'Cola', 2.50, 2),
+  (4, 'Orange Juice', 3.00, 2),
+  (5, 'Chocolate Cake', 4.50, 3);
+
+INSERT INTO Orders (order_id, customer_id, employee_id)
+VALUES
+  (1, 01, 03), -- chef 1
+  (2, 02, 04); -- chef 2 
+
+INSERT INTO Order_Details (order_detail_id, order_id, menu_id, quantity)
+VALUES
+  (1, 1, 1, 2),  -- 2 Cheeseburgers
+  (2, 1, 3, 2),  -- 2 Cola
+  (3, 2, 2, 1),  -- 1 Pizza
+  (4, 2, 5, 1);  -- 1 Chocolate Cake
+
+INSERT INTO Payment (payment_id, order_id, amount, payment_method)
+VALUES
+  (1, 1, 22.00, 'Cash'),
+  (2, 2, 14.50, 'Credit Card');
