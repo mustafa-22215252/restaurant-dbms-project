@@ -1,0 +1,81 @@
+SELECT name, role, salary
+FROM employee
+ORDER BY salary DESC;
+
+SELECT role, COUNT(*) AS total_employees
+FROM employee
+GROUP BY role;
+
+SELECT role, AVG(salary) AS average_salary
+FROM employee
+GROUP BY role;
+
+SELECT m.name AS menu_item,
+       c.category_name,
+       m.price
+FROM menu 
+JOIN category c ON m.category_id = c.category_id;
+
+SELECT c.category_name,
+       COUNT(m.menu_id) AS total_items
+FROM category c
+LEFT JOIN menu m ON c.category_id = m.category_id
+GROUP BY c.category_name;
+
+
+SELECT o.order_id,
+       (
+         SELECT SUM(od.quantity * m.price)
+         FROM order_details od
+         JOIN menu m ON od.menu_id = m.menu_id
+         WHERE od.order_id = o.order_id
+       ) AS total_order_amount
+FROM orders o;
+
+SELECT SUM(amount) AS total_revenue
+FROM payment;
+
+SELECT payment_method,
+       SUM(amount) AS total_amount
+FROM payment
+GROUP BY payment_method;
+
+SELECT m.name AS menu_item,
+       SUM(od.quantity) AS total_quantity_sold
+FROM order_details od
+JOIN menu m ON od.menu_id = m.menu_id
+GROUP BY m.name
+ORDER BY total_quantity_sold DESC;
+
+SELECT m.name,
+       SUM(od.quantity * m.price) AS total_sales
+FROM order_details od
+JOIN menu m ON od.menu_id = m.menu_id
+GROUP BY m.name
+ORDER BY total_sales DESC;
+
+SELECT e.name AS employee_name,
+       COUNT(o.order_id) AS total_orders
+FROM employee e
+LEFT JOIN orders o ON e.employee_id = o.employee_id
+GROUP BY e.name;
+
+SELECT o.order_id,
+       o.order_date,
+       p.payment_date,
+       p.amount
+FROM orders o
+JOIN payment p ON o.order_id = p.order_id;
+
+SELECT name,
+       LENGTH(name) AS name_length
+FROM menu;
+
+SELECT TO_CHAR(payment_date, 'YYYY-MM') AS month,
+       SUM(amount) AS monthly_revenue
+FROM payment
+GROUP BY month
+ORDER BY month;
+
+SELECT COUNT(*) AS total_orders
+FROM orders;
